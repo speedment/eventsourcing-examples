@@ -1,8 +1,4 @@
 # App Settings
-spring:
-  application:
-    name: schedule-service
-
 server:
   port: 9091
 

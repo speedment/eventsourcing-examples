@@ -1,0 +1,3 @@
+# App Settings
+server:
+  port: 9092

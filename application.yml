@@ -1,0 +1,13 @@
+# Common application properties for all services and profiles
+info:
+  description: Speedment Event-Sourcing Demo
+  url: https://github.com/speedment/eventsourcing-examples
+
+# Eureka Client Settings
+eureka:
+  client:
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    serviceUrl:
+      defaultZone:
+        http://localhost:8761/eureka/

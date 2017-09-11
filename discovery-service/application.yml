@@ -1,0 +1,7 @@
+# App Settings
+spring:
+  application:
+    name: discovery-service
+
+server:
+  port: 8761

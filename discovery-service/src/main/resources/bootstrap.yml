@@ -1,7 +1,4 @@
-# App Settings
+# What name to use when loading configuration from the config-service
 spring:
-  application:
-    name: discovery-service
   cloud:
-    config:
-      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+    name: discovery-service

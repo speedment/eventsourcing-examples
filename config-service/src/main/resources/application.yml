@@ -8,6 +8,7 @@ spring:
       server:
         git:
           uri: https://github.com/speedment/eventsourcing-examples
+          searchPaths: '{application}'
 
 server:
   port: 8888

@@ -1,4 +1,4 @@
 # What name to use when loading configuration from the config-service
 spring:
-  cloud:
+  application:
     name: discovery-service

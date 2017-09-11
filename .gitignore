@@ -7,4 +7,5 @@
 **/target/
 **/.sonar
 **/.idea
+*.iml
 *~

@@ -1,0 +1,182 @@
+/* Site Style */
+body {
+    background: #eee;
+}
+
+/* Calendar Style */
+
+.calendar {
+    overflow: hidden;
+}
+
+.calendar > .col {
+    padding: 0px;
+}
+
+.calendar-label,
+.calendar-slot {
+    width: 100%;
+    height: 2.5rem;
+}
+
+.calendar-label {
+    background: #ddd;
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 90%;
+}
+
+.calendar-sidebar > .calendar-label {
+    text-align: right;
+}
+
+.calendar-weekday > .calendar-label {
+    text-align: center;
+}
+
+.calendar-slot {
+    background: #f6f6f6;
+}
+
+.calendar-slot:hover {
+    background: #fefefe;
+    cursor: pointer;
+}
+
+.calendar-slot:not(:first-child) {
+    border-right: solid 1px #eee;
+    border-bottom: solid 1px #eee;
+}
+
+.calendar > .col {
+    border-top: solid 2px #aaa;
+    border-bottom: solid 2px #aaa;
+}
+
+.calendar > .col:first-child {
+    border-left: solid 2px #aaa;
+}
+
+.calendar > .col:last-child {
+    border-right: solid 2px #aaa;
+}
+
+.calendar-event {
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    border: 0.1rem solid #66aa44;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    color: #fff;
+    font-size: 75%;
+    padding-top: 0.1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.calendar-event > .begin {
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    right: 0rem;
+    height: 0.5rem;
+}
+
+.calendar-event > .end {
+    position: absolute;
+    left: 0rem;
+    bottom: 0rem;
+    right: 0rem;
+    height: 0.5rem;
+}
+
+.calendar-event[data-hours="1"] { height:  1.5rem; }
+.calendar-event[data-hours="2"] { height:  4.0rem; }
+.calendar-event[data-hours="3"] { height:  6.5rem; }
+.calendar-event[data-hours="4"] { height:  9.0rem; }
+.calendar-event[data-hours="5"] { height: 11.5rem; }
+.calendar-event[data-hours="6"] { height: 14.0rem; }
+.calendar-event[data-hours="7"] { height: 16.5rem; }
+.calendar-event[data-hours="8"] { height: 19.0rem; }
+.calendar-event[data-hours="9"] { height: 21.5rem; }
+.calendar-event[data-hours="10"] { height: 24.0rem; }
+.calendar-event[data-hours="11"] { height: 26.5rem; }
+.calendar-event[data-hours="12"] { height: 29.0rem; }
+.calendar-event[data-hours="13"] { height: 31.5rem; }
+.calendar-event[data-hours="14"] { height: 34.0rem; }
+.calendar-event[data-hours="15"] { height: 36.5rem; }
+.calendar-event[data-hours="16"] { height: 39.0rem; }
+
+.calendar-event[data-time="8"]  { top:  3.0rem; }
+.calendar-event[data-time="9"]  { top:  5.5rem; }
+.calendar-event[data-time="10"] { top:  8.0rem; }
+.calendar-event[data-time="11"] { top: 10.5rem; }
+.calendar-event[data-time="12"] { top: 13.0rem; }
+.calendar-event[data-time="13"] { top: 15.5rem; }
+.calendar-event[data-time="14"] { top: 18.0rem; }
+.calendar-event[data-time="15"] { top: 20.5rem; }
+.calendar-event[data-time="16"] { top: 23.0rem; }
+.calendar-event[data-time="17"] { top: 25.5rem; }
+.calendar-event[data-time="18"] { top: 28.0rem; }
+.calendar-event[data-time="19"] { top: 30.5rem; }
+.calendar-event[data-time="20"] { top: 33.0rem; }
+.calendar-event[data-time="21"] { top: 35.5rem; }
+.calendar-event[data-time="22"] { top: 38.0rem; }
+.calendar-event[data-time="23"] { top: 40.5rem; }
+
+
+/* Animation */
+.calendar-event {
+    background-color: #66aa44;
+}
+
+.calendar-event:hover {
+    background-color: #97d279;
+}
+
+/*.calendar-event.pending {
+    transition        : 500ms linear;
+    -webkit-transition: 500ms linear;
+}*/
+
+.calendar-event.pending:after {
+    content          : "";
+    top              : 0;
+    left             : 0;
+    right            : 0;
+    bottom           : 0;
+    z-index          : 1;
+    position         : absolute;
+    background-size  : 2.5rem 2.5rem;
+    overflow         : hidden;
+    /*animation        : stripes-move 1s linear infinite;
+    -webkit-animation: stripes-move 1s linear infinite;*/
+    background-image : -webkit-linear-gradient(135deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    background-image : linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+@-webkit-keyframes stripes-move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 5rem 5rem;
+    }
+}
+
+@keyframes stripes-move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 5rem 5rem;
+    }
+}
+
+.calendar-event.pending:after {
+    -webkit-animation: stripes-move 4s linear infinite;
+    animation        : stripes-move 4s linear infinite;
+}

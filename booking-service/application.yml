@@ -1,0 +1,13 @@
+# App Settings
+spring:
+  application:
+    name: booking-service
+
+server:
+  port: 9090
+
+# Speedment Settings
+speedment:
+  dbms:
+    username: root
+    password: password

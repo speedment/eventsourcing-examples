@@ -33,7 +33,6 @@ spring:
         order: 11000
         predicates:
         - Path=/api/v1/booking
-        - Method=POST,PUT,DELETE
 
       # frontend-service
       - id: frontend-service

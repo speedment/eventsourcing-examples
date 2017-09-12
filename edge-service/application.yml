@@ -1,3 +1,44 @@
 # App Settings
 server:
   port: 9094
+
+management:
+  security:
+    enabled: false # TODO: Remove in production!
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+      - AddResponseHeader=X-Response-Greeting, Hello-World
+
+      # schedule-service
+      routes:
+      - id: schedule-service-subscribe
+        uri: ws://localhost:9091/subscribe
+        order: 9000
+        predicates:
+        - Path=/api/v1/subscribe
+
+      - id: schedule-service-get
+        uri: http://localhost:9091/booking
+        order: 10000
+        predicates:
+        - Path=/api/v1/booking
+        - Method=GET
+
+      # booking-service
+      - id: booking-service
+        uri: http://localhost:9090/booking
+        order: 11000
+        predicates:
+        - Path=/api/v1/booking
+        - Method=POST,PUT,DELETE
+
+      # frontend-service
+      - id: frontend-service
+        uri: http://localhost:9092
+        order: 11000
+        predicates:
+        - Path=/** # All remaining GET paths are directed here.
+        - Method=GET

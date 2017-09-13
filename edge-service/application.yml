@@ -6,9 +6,9 @@ zuul:
   ws:
     brokerages:
       schedule:
-        endPoints: /subscribe
-        brokers: /schedule
-        destinationPrefixes: /app
+        endPoints: /ws/subscribe
+        brokers: /ws/schedule
+        destinationPrefixes: /ws/app
         serviceId: schedule-service
   routes:
     booking:
@@ -19,7 +19,7 @@ zuul:
       serviceId: schedule-service
       customSensitiveHeaders: true
     websocket:
-      path: /subscribe/**
+      path: /ws/**
       serviceId: schedule-service
       customSensitiveHeaders: true
     frontend:

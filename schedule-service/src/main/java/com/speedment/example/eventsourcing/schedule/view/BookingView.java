@@ -147,7 +147,7 @@ public final class BookingView {
                                 final int userId = event.getUserId().orElseGet(existing::getUserId);
 
                                 if (!to.isAfter(from)) {
-                                    notifications.add(reject(event, "bookTo mus tbe after bookFrom"));
+                                    notifications.add(reject(event, "bookTo must be after bookFrom"));
                                     return existing;
                                 }
 

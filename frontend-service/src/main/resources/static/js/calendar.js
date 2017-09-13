@@ -14,11 +14,22 @@ jQuery(function($) {
         return formatTime(time) + ' - ' + formatTime(time + duration);
     }
 
-    function createEvent(slot) {
+    function showError(msg) {
+        var box = $('<div class="alert alert-danger" role="alert"></div>')
+            .text(msg).hide();
+
+        $('.calender').append(box);
+        box.fadeIn().delay(5000).fadeOut('slow').remove();
+
+        console.log('Error: ' + msg);
+    }
+
+    function createEvent(slot, duration) {
         var column = slot.parent();
         var date = column.attr('data-date');
         var time = parseInt(slot.attr('data-time'));
-        var duration = DEFAULT_DURATION;
+
+        duration = typeof duration !== 'undefined' ? duration : DEFAULT_DURATION;
 
         var begin = $('<div class="begin"></div>');
         var end   = $('<div class="end"></div>');
@@ -28,12 +39,16 @@ jQuery(function($) {
         var event = $('<div class="calendar-event"></div>')
             .attr('data-time', time)
             .attr('data-hours', duration)
-            .addClass('pending')
             .append(begin)
             .append(body)
-            .append(end);
+            .append(end)
+            .addClass('pending');
 
         var dragEndHandler = function(ev) {
+            if (dragged !== null) {
+                window.setTimeout(function(){event.removeClass('pending');},2000);
+            }
+
             dragged = null;
             ev.preventDefault();
             ev.stopPropagation();
@@ -56,7 +71,7 @@ jQuery(function($) {
             } else {
                 if (dragged === null) {
                     dragged = $(this);
-                    dragged.parent().addClass('pending');
+                    event.addClass('pending');
                 } else {
                     dragged = null;
                 }
@@ -79,13 +94,14 @@ jQuery(function($) {
         event.contextmenu(deleteHandler);
 
         column.append(event);
+        window.setTimeout(function(){event.removeClass('pending');},2000);
         return event;
     }
 
     function renderWeek(startDate) {
         $('.calendar > .calendar-weekday').remove();
         for (var i = 0; i < 7; i++) {
-            var m = startDate.add(i, 'days');
+            var m = startDate.add(1, 'days');
             var weekday = $('<div class="col calendar-weekday">')
                 .attr('data-date', m.format('YYYY-MM-DD'))
                 .append($('<div class="calendar-label">' +
@@ -192,7 +208,33 @@ jQuery(function($) {
     stompClient.connect({}, function(frame) {
         console.log('Connected.');
         stompClient.subscribe('/schedule', function (event) {
-            console.log(JSON.parse(event.body).content);
+            var notification = JSON.parse(event.body);
+            if (notification.status === 'REJECTED') {
+                console.log('Event rejected: ' + notification.data);
+                showError(notification.msg);
+            } else if (notification.status === 'ACCEPTED') {
+                console.log('Event accepted: ' + notification.data);
+
+                var mFrom = moment(notification.data.bookFrom);
+                var mTo   = moment(notification.data.bookTo);
+
+                var dateFrom = mFrom.format('YYYY-MM-DD');
+                var duration = moment.duration(mTo.diff(mFrom)).asHours();
+
+                var day = $('.calendar-weekday[data-date="' + mFrom.format('YYYY-MM-DD') + '"]');
+                if (day.length === 0) {
+                    console.error('Can\'t find day for date "' + mFrom.format('YYYY-MM-DD') + '".');
+                } else {
+                    var slot = day.find('.calendar-slot[data-time="' + mFrom.format('HH') + '"]');
+                    if (slot.length === 0) {
+                        console.error('Can\'t find slot for date & time "' + mFrom.format('YYYY-MM-DD HH') + '".');
+                    } else {
+                        createEvent(slot, duration);
+                    }
+                }
+            } else {
+                console.error('Unknown notification status for ' + event.body);
+            }
         });
     });
 });

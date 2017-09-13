@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +17,7 @@ import static org.springframework.http.ResponseEntity.notFound;
  * @author Emil Forslund
  * @since  1.0.0
  */
-@RestController
+//@RestController
 public final class ScheduleController {
 
     private @Autowired BookingView view;

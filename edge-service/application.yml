@@ -18,6 +18,10 @@ zuul:
       path: /api/v1/schedule/**
       serviceId: schedule-service
       customSensitiveHeaders: true
+    websocket:
+      path: /subscribe/**
+      serviceId: schedule-service
+      customSensitiveHeaders: true
     frontend:
       path: /**
       serviceId: frontend-service

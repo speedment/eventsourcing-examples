@@ -21,7 +21,6 @@ import static org.springframework.web.util.UriComponentsBuilder.fromPath;
  * @since  1.0.0
  */
 @RestController
-@RequestMapping("booking")
 public final class BookingController {
 
     private @Autowired BookingEventManager bookingEvents;

@@ -6,9 +6,10 @@ zuul:
   ws:
     brokerages:
       schedule:
-        endPoints: /api/v1/schedule/subscribe
-        brokers: /api/v1/schedule/schedule
-        destinationPrefixes: /api/v1/schedule/app
+        endPoints: /subscribe
+        brokers: /schedule
+        destinationPrefixes: /app
+        serviceId: schedule-service
   routes:
     booking:
       path: /api/v1/booking/**

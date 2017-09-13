@@ -5,15 +5,20 @@ server:
 zuul:
   routes:
     booking:
+      path: /api/v1/booking/**
+      serviceId: booking-service
+    schedule:
+      path: /api/v1/schedule/**
+      serviceId: schedule-service
+    frontend:
       path: /**
-      service-id: frontend-service
-      customSensitiveHeaders: true
+      serviceId: frontend-service
   ws:
     brokerages:
       schedule:
-        end-points: /subscribe
+        endPoints: /subscribe
         brokers: /schedule
-        destination-prefixes: /app
+        destinationPrefixes: /app
 
 #management:
 #  security:

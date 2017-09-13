@@ -3,6 +3,12 @@ server:
   port: 9094
 
 zuul:
+  ws:
+    brokerages:
+      schedule:
+        endPoints: /api/v1/schedule/subscribe
+        brokers: /api/v1/schedule/schedule
+        destinationPrefixes: /api/v1/schedule/app
   routes:
     booking:
       path: /api/v1/booking/**
@@ -10,15 +16,11 @@ zuul:
     schedule:
       path: /api/v1/schedule/**
       serviceId: schedule-service
+      customSensitiveHeaders: true
     frontend:
       path: /**
       serviceId: frontend-service
-  ws:
-    brokerages:
-      schedule:
-        endPoints: /subscribe
-        brokers: /schedule
-        destinationPrefixes: /app
+
 
 #management:
 #  security:

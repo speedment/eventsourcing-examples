@@ -5,10 +5,10 @@ server:
 zuul:
   ws:
     brokerages:
-      schedule:
-        endPoints: /ws/subscribe
-        brokers: /ws/schedule
-        destinationPrefixes: /ws/app
+      websocket:
+        endPoints: /subscribe
+        brokers: /schedule
+        destinationPrefixes: /app
         serviceId: schedule-service
   routes:
     booking:

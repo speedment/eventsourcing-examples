@@ -1,6 +1,6 @@
 # App Settings
 server:
-  port: 9094
+  port: 9090
 
 zuul:
   ws:

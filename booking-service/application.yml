@@ -1,6 +1,6 @@
 # App Settings
 server:
-  port: 9090
+  port: 0
 
 # Speedment Settings
 speedment:

@@ -19,41 +19,6 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 @EnableWebSocketMessageBroker
 @EnableWebSecurity
 public class EdgeApp {
-//
-//    @Bean
-//    public RouteLocator customRouteLocator() {
-//        return Routes.locator()
-//            .route("booking-route")
-//            .id("booking-service")
-//            .uri("http://localhost:9090/booking")
-//            .predicate(path("/api/v1/booking")
-//                .and(method("POST").or(method("PUT")).or(method("DELETE"))))
-//            .add(addResponseHeader("", ""))
-//            .addResponseHeader("X-Service", "booking-service")
-//            .add((exchange, chain) -> {
-//                chain.filter(exchange);
-//                return exchange.getResponse().setComplete();
-//            })
-//            .and()
-//            .route("schedule-route")
-//            .id("schedule-service")
-//            .uri("http://localhost:9091/booking")
-//            .predicate(path("/api/v1/booking").and(method("GET")))
-//            .addResponseHeader("X-Service", "schedule-service")
-//            .and()
-//            .route("websocket-route")
-//            .id("websocket-service")
-//            .uri("ws://localhost:9091/subscribe")
-//            .predicate(path("/api/v1/subscribe"))
-//            .addResponseHeader("X-Service", "websocket-service")
-//            .and()
-//            .route("frontend-route")
-//            .id("frontend-service")
-//            .uri("http://localhost:9092")
-//            .predicate(method("GET"))
-//            .addResponseHeader("X-Service", "frontend-service")
-//            .and().build();
-//    }
 
     public static void main(String... args) {
         SpringApplication.run(EdgeApp.class, args);

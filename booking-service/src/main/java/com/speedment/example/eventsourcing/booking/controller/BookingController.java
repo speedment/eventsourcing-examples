@@ -27,7 +27,7 @@ public final class BookingController {
     private @Value("${booking.apiVersion:1}") byte apiVersion;
 
     @PostMapping
-    ResponseEntity<EventId> createBooking(@RequestBody Booking booking) {
+    ResponseEntity<BookingReceipt> createBooking(@RequestBody Booking booking) {
         final UUID uuid = UUID.randomUUID();
         final BookingEvent event = bookingEvents.persist(newEvent(booking)
             .setBooking(uuid)
@@ -38,7 +38,7 @@ public final class BookingController {
     }
 
     @PutMapping("{uuid}")
-    ResponseEntity<EventId> updateBooking(
+    ResponseEntity<BookingReceipt> updateBooking(
             @PathVariable("uuid") UUID id,
             @RequestBody Booking booking) {
 
@@ -51,7 +51,7 @@ public final class BookingController {
     }
 
     @DeleteMapping("{uuid}")
-    ResponseEntity<EventId> cancelBooking(@PathVariable("uuid") UUID id) {
+    ResponseEntity<BookingReceipt> cancelBooking(@PathVariable("uuid") UUID id) {
         final BookingEvent event = bookingEvents.persist(new BookingEventImpl()
             .setBooking(id)
             .setType(BookingEvent.Type.CANCEL)
@@ -69,14 +69,14 @@ public final class BookingController {
             .setBookTo(booking.getBookTo().toLocalDateTime());
     }
 
-    private ResponseEntity<EventId> trackProgress(UUID uuid) {
+    private ResponseEntity<BookingReceipt> trackProgress(UUID uuid) {
         return created(fromPath("/booking/{uuid}")
             .build(uuid)
-        ).body(new EventId(uuid));
+        ).body(new BookingReceipt(uuid));
     }
 
     @Data
-    private final static class EventId {
+    private final static class BookingReceipt {
         private final UUID eventId;
     }
 

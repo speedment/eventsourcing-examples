@@ -1,27 +1,26 @@
 {
   "config" : {
     "expanded" : true,
+    "appId" : "07af7fa7-dd92-484f-a210-e7b2e2c3e95b",
     "companyName" : "speedment",
-    "appId" : "19359e4c-d984-445e-9ee3-136efec27323",
-    "name" : "schedules",
+    "name" : "bookings",
     "packageLocation" : "src/main/java/",
-    "id" : "schedules",
-    "packageName" : "com.speedment.example.eventsourcing.schedule.event",
+    "id" : "booking_demo",
+    "packageName" : "com.speedment.example.eventsourcing.calendar.event",
     "dbmses" : [
       {
         "expanded" : true,
         "port" : 3306,
         "schemas" : [
           {
-            "expanded" : true,
             "tables" : [
               {
                 "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
-                    "name" : "id",
-                    "id" : "id",
+                    "name" : "seqNo",
+                    "id" : "seqNo",
                     "ordinalPosition" : 1
                   }
                 ],
@@ -34,8 +33,8 @@
                       {
                         "orderType" : "ASC",
                         "expanded" : true,
-                        "name" : "id",
-                        "id" : "id",
+                        "name" : "seqNo",
+                        "id" : "seqNo",
                         "ordinalPosition" : 1
                       }
                     ],
@@ -51,35 +50,10 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
-                    "name" : "id",
+                    "name" : "seqNo",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "id",
+                    "id" : "seqNo",
                     "ordinalPosition" : 1,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Object",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
-                    "nullable" : false,
-                    "autoIncrement" : false,
-                    "name" : "booking",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "booking",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.String",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
-                    "nullable" : false,
-                    "enumConstants" : "BOOK,UPDATE,CANCEL",
-                    "autoIncrement" : false,
-                    "name" : "type",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "type",
-                    "ordinalPosition" : 3,
                     "enabled" : true
                   },
                   {
@@ -91,28 +65,55 @@
                     "name" : "version",
                     "nullableImplementation" : "OPTIONAL",
                     "id" : "version",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "autoIncrement" : false,
-                    "name" : "userId",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "userId",
-                    "ordinalPosition" : 5,
+                    "ordinalPosition" : 2,
                     "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "nullable" : false,
+                    "enumConstants" : "CREATE_BOOKING,UPDATE_BOOKING,CANCEL_BOOKING",
+                    "autoIncrement" : false,
+                    "name" : "type",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "type",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Object",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
+                    "nullable" : false,
+                    "autoIncrement" : false,
+                    "name" : "booking_id",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "booking_id",
+                    "ordinalPosition" : 4,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Object",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
                     "nullable" : true,
                     "autoIncrement" : false,
-                    "name" : "resource",
+                    "name" : "user_id",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "resource",
+                    "id" : "user_id",
+                    "ordinalPosition" : 5,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Object",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "name" : "resource_id",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "resource_id",
                     "ordinalPosition" : 6,
                     "enabled" : true
                   },
@@ -144,10 +145,11 @@
                 "name" : "booking",
                 "alias" : "booking_event",
                 "id" : "booking",
-                "packageName" : "com.speedment.example.eventsourcing.schedule.event.booking_event",
+                "packageName" : "com.speedment.example.eventsourcing.calendar.event.booking_event",
                 "enabled" : true
               }
             ],
+            "expanded" : true,
             "name" : "booking_demo",
             "id" : "booking_demo",
             "enabled" : true

@@ -3,6 +3,7 @@ package com.speedment.example.eventsourcing.calendar.view;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * @author Emil Forslund
@@ -10,8 +11,9 @@ import java.time.LocalDateTime;
  */
 @Data
 public final class Booking {
-    private final int userId;
-    private final String resource;
+    private final UUID id;
+    private final UUID userId;
+    private final UUID resourceId;
     private final LocalDateTime fromIncl;
     private final LocalDateTime toExcl;
 }

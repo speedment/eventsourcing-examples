@@ -36,14 +36,14 @@ public final class ScheduleController {
     }
 
     @GetMapping("/byResource/{resource}")
-    List<Booking> bookingsByResource(@PathVariable String resource) {
+    List<Booking> bookingsByResource(@PathVariable UUID resource) {
         return view.currentBookings()
-            .filter(b -> b.getResource().equals(resource))
+            .filter(b -> b.getResourceId().equals(resource))
             .collect(toList());
     }
 
     @GetMapping("/byUser/{user}")
-    List<Booking> bookingsByResource(@PathVariable int user) {
+    List<Booking> bookingsByUser(@PathVariable UUID user) {
         return view.currentBookings()
             .filter(b -> b.getUserId() == user)
             .collect(toList());

@@ -1,6 +1,6 @@
 package com.speedment.example.eventsourcing.calendar.controller;
 
-import com.speedment.example.eventsourcing.calendar.view.BookingNotification;
+import com.speedment.example.eventsourcing.calendar.view.BookingConfirmation;
 import com.speedment.example.eventsourcing.calendar.view.BookingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -24,7 +24,7 @@ public final class ScheduleEventBus {
         view.addRefusedListener(this::pushNotification);
     }
 
-    private void pushNotification(BookingNotification notification) {
+    private void pushNotification(BookingConfirmation notification) {
         template.convertAndSend(
             "/calendar",
             notification

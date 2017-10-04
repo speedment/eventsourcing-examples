@@ -8,7 +8,7 @@ import lombok.Data;
  * @since  1.0.0
  */
 @Data
-public final class BookingNotification {
+public final class BookingConfirmation {
 
     enum BookingStatus {
         ACCEPTED, REJECTED
@@ -17,5 +17,4 @@ public final class BookingNotification {
     private final BookingStatus status;
     private final BookingEvent data;
     private final String msg;
-
 }

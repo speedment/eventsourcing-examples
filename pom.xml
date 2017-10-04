@@ -33,7 +33,7 @@
         <module>config-service</module>
         <module>discovery-service</module>
         <module>booking-service</module>
-        <module>schedule-service</module>
+        <module>calendar-service</module>
         <module>frontend-service</module>
         <module>edge-service</module>
     </modules>

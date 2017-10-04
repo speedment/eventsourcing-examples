@@ -1,6 +1,6 @@
-package com.speedment.example.eventsourcing.booking.event;
+package com.speedment.example.eventsourcing.calendar.event;
 
-import com.speedment.example.eventsourcing.booking.event.generated.GeneratedBookingsApplicationBuilder;
+import com.speedment.example.eventsourcing.calendar.event.generated.GeneratedBookingsApplicationBuilder;
 
 /**
  * The default {@link com.speedment.runtime.core.ApplicationBuilder}

@@ -1,6 +1,6 @@
-package com.speedment.example.eventsourcing.booking.event;
+package com.speedment.example.eventsourcing.calendar.event;
 
-import com.speedment.example.eventsourcing.booking.event.generated.GeneratedBookingsApplicationImpl;
+import com.speedment.example.eventsourcing.calendar.event.generated.GeneratedBookingsApplicationImpl;
 
 /**
  * The default {@link com.speedment.runtime.core.Speedment} implementation class
@@ -10,6 +10,6 @@ import com.speedment.example.eventsourcing.booking.event.generated.GeneratedBook
  * 
  * @author speedment
  */
-public final class BookingsApplicationImpl 
-extends GeneratedBookingsApplicationImpl 
+public final class BookingsApplicationImpl
+    extends GeneratedBookingsApplicationImpl
 implements BookingsApplication {}

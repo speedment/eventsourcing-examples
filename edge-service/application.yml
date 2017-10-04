@@ -7,20 +7,20 @@ zuul:
     brokerages:
       websocket:
         endPoints: /subscribe
-        brokers: /schedule
+        brokers: /calendar
         destinationPrefixes: /app
-        serviceId: schedule-service
+        serviceId: calendar-service
   routes:
     booking:
       path: /api/v1/booking/**
       serviceId: booking-service
     schedule:
-      path: /api/v1/schedule/**
-      serviceId: schedule-service
+      path: /api/v1/calendar/**
+      serviceId: calendar-service
       customSensitiveHeaders: true
     websocket:
       path: /ws/**
-      serviceId: schedule-service
+      serviceId: calendar-service
       customSensitiveHeaders: true
     frontend:
       path: /**
@@ -37,15 +37,15 @@ zuul:
 #      default-filters:
 #      - AddResponseHeader=X-Response-Greeting, Hello-World
 #
-#      # schedule-service
+#      # calendar-service
 #      routes:
-#      - id: schedule-service-subscribe
+#      - id: calendar-service-subscribe
 #        uri: ws://localhost:9091/subscribe
 #        order: 9000
 #        predicates:
 #        - Path=/api/v1/subscribe
 #
-#      - id: schedule-service-get
+#      - id: calendar-service-get
 #        uri: http://localhost:9091/booking
 #        order: 10000
 #        predicates:

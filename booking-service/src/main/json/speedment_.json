@@ -1,11 +1,11 @@
 {
   "config" : {
     "expanded" : true,
-    "appId" : "07af7fa7-dd92-484f-a210-e7b2e2c3e95b",
+    "appId" : "2c5e779d-4fd2-4838-afa0-d8da039c4d5d",
     "companyName" : "speedment",
     "name" : "bookings",
     "packageLocation" : "src/main/java/",
-    "id" : "booking_demo",
+    "id" : "bookings",
     "packageName" : "com.speedment.example.eventsourcing.booking.event",
     "dbmses" : [
       {
@@ -13,14 +13,15 @@
         "port" : 3306,
         "schemas" : [
           {
+            "expanded" : true,
             "tables" : [
               {
                 "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
-                    "name" : "seqNo",
-                    "id" : "seqNo",
+                    "name" : "id",
+                    "id" : "id",
                     "ordinalPosition" : 1
                   }
                 ],
@@ -33,8 +34,8 @@
                       {
                         "orderType" : "ASC",
                         "expanded" : true,
-                        "name" : "seqNo",
-                        "id" : "seqNo",
+                        "name" : "id",
+                        "id" : "id",
                         "ordinalPosition" : 1
                       }
                     ],
@@ -50,10 +51,35 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "nullable" : false,
                     "autoIncrement" : true,
-                    "name" : "seqNo",
+                    "name" : "id",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "seqNo",
+                    "id" : "id",
                     "ordinalPosition" : 1,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Object",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
+                    "nullable" : false,
+                    "autoIncrement" : false,
+                    "name" : "booking",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "booking",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
+                    "nullable" : false,
+                    "enumConstants" : "BOOK,UPDATE,CANCEL",
+                    "autoIncrement" : false,
+                    "name" : "type",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "type",
+                    "ordinalPosition" : 3,
                     "enabled" : true
                   },
                   {
@@ -65,55 +91,28 @@
                     "name" : "version",
                     "nullableImplementation" : "OPTIONAL",
                     "id" : "version",
-                    "ordinalPosition" : 2,
+                    "ordinalPosition" : 4,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "name" : "userId",
+                    "nullableImplementation" : "OPTIONAL",
+                    "id" : "userId",
+                    "ordinalPosition" : 5,
                     "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
-                    "typeMapper" : "com.speedment.plugins.enums.StringToEnumTypeMapper",
-                    "nullable" : false,
-                    "enumConstants" : "CREATE_BOOKING,UPDATE_BOOKING,CANCEL_BOOKING",
+                    "nullable" : true,
                     "autoIncrement" : false,
-                    "name" : "type",
+                    "name" : "resource",
                     "nullableImplementation" : "OPTIONAL",
-                    "id" : "type",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Object",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
-                    "nullable" : false,
-                    "autoIncrement" : false,
-                    "name" : "booking_id",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "booking_id",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Object",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
-                    "nullable" : false,
-                    "autoIncrement" : false,
-                    "name" : "user_id",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "user_id",
-                    "ordinalPosition" : 5,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Object",
-                    "expanded" : true,
-                    "typeMapper" : "com.speedment.runtime.typemapper.other.BinaryToUuidMapper",
-                    "nullable" : false,
-                    "autoIncrement" : false,
-                    "name" : "resource_id",
-                    "nullableImplementation" : "OPTIONAL",
-                    "id" : "resource_id",
+                    "id" : "resource",
                     "ordinalPosition" : 6,
                     "enabled" : true
                   },
@@ -149,7 +148,6 @@
                 "enabled" : true
               }
             ],
-            "expanded" : true,
             "name" : "booking_demo",
             "id" : "booking_demo",
             "enabled" : true

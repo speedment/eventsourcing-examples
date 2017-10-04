@@ -1,4 +1,0 @@
-# What name to use when loading configuration from the config-service
-spring:
-  application:
-    name: schedule-service

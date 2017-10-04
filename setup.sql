@@ -2,12 +2,12 @@ CREATE DATABASE booking_demo;
 USE booking_demo;
 
 CREATE TABLE `booking` (
-    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `booking` BINARY(16) NOT NULL,
-    `type` ENUM('BOOK', 'UPDATE', 'CANCEL') NOT NULL,
+    `seqNo` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `version` TINYINT NOT NULL DEFAULT 1,
-    `userId` INT,
-    `resource` VARCHAR(32),
+    `type` ENUM('CREATE_BOOKING', 'UPDATE_BOOKING', 'CANCEL_BOOKING') NOT NULL,
+    `booking_id` BINARY(16) NOT NULL,
+    `user_id` BINARY(16) NOT NULL,
+    `resource_id` BINARY(16) NOT NULL,
     `bookFrom` DATETIME,
     `bookTo` DATETIME
 );

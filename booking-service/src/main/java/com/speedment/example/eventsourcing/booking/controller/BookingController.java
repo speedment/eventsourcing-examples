@@ -27,64 +27,78 @@ public final class BookingController {
     private @Value("${booking.apiVersion:1}") byte apiVersion;
 
     @PostMapping
-    ResponseEntity<BookingReceipt> createBooking(@RequestBody Booking booking) {
-        final UUID uuid = UUID.randomUUID();
-        final BookingEvent event = bookingEvents.persist(newEvent(booking)
-            .setBooking(uuid)
-            .setType(BookingEvent.Type.BOOK)
-        );
+    ResponseEntity<BookingReceipt> createBooking(
+            @RequestBody BookingRequest bookingRequest) {
 
-        return trackProgress(event.getBooking());
+        return createReceipt(
+            bookingEvents.persist(
+                newBookingEvent(bookingRequest)
+                    .setBookingId(UUID.randomUUID())
+                    .setType(BookingEvent.Type.CREATE_BOOKING)
+            )
+        );
     }
 
     @PutMapping("{uuid}")
     ResponseEntity<BookingReceipt> updateBooking(
-            @PathVariable("uuid") UUID id,
-            @RequestBody Booking booking) {
+            @PathVariable("uuid") UUID bookingId,
+            @RequestBody BookingRequest booking) {
 
-        final BookingEvent event = bookingEvents.persist(newEvent(booking)
-            .setBooking(id)
-            .setType(BookingEvent.Type.UPDATE)
+        return createReceipt(
+            bookingEvents.persist(
+                newBookingEvent(booking)
+                    .setBookingId(bookingId)
+                    .setType(BookingEvent.Type.UPDATE_BOOKING)
+            )
         );
-
-        return trackProgress(event.getBooking());
     }
 
     @DeleteMapping("{uuid}")
-    ResponseEntity<BookingReceipt> cancelBooking(@PathVariable("uuid") UUID id) {
-        final BookingEvent event = bookingEvents.persist(new BookingEventImpl()
-            .setBooking(id)
-            .setType(BookingEvent.Type.CANCEL)
-        );
+    ResponseEntity<BookingReceipt> cancelBooking(
+            @PathVariable("uuid") UUID bookingId) {
 
-        return trackProgress(event.getBooking());
+        return createReceipt(
+            bookingEvents.persist(
+                newBookingEvent()
+                    .setBookingId(bookingId)
+                    .setType(BookingEvent.Type.CANCEL_BOOKING)
+                )
+        );
     }
 
-    private BookingEvent newEvent(Booking booking) {
+    private BookingEvent newBookingEvent() {
         return new BookingEventImpl()
-            .setVersion(apiVersion)
-            .setUserId(booking.getUserId())
-            .setResource(booking.getResource())
+            .setVersion(apiVersion);
+    }
+
+    private BookingEvent newBookingEvent(BookingRequest booking) {
+        return newBookingEvent()
+            .setUserId(booking.getUser())
+            .setResourceId(booking.getResource())
             .setBookFrom(booking.getBookFrom().toLocalDateTime())
             .setBookTo(booking.getBookTo().toLocalDateTime());
     }
 
-    private ResponseEntity<BookingReceipt> trackProgress(UUID uuid) {
+    private ResponseEntity<BookingReceipt> createReceipt(BookingEvent event) {
         return created(fromPath("/booking/{uuid}")
-            .build(uuid)
-        ).body(new BookingReceipt(uuid));
+            .build(event.getBookingId())
+        ).body(new BookingReceipt(
+            event.getSeqNo(),
+            event.getBookingId()
+        ));
+    }
+
+    @Data
+    private final static class BookingRequest {
+        private @NotNull UUID user;
+        private @NotNull UUID resource;
+        private @NotNull OffsetDateTime bookFrom;
+        private @NotNull OffsetDateTime bookTo;
     }
 
     @Data
     private final static class BookingReceipt {
+        private final long seqNo;
         private final UUID eventId;
-    }
-
-    @Data
-    private final static class Booking {
-        private @NotNull int userId;
-        private @NotNull String resource;
-        private @NotNull OffsetDateTime bookFrom;
-        private @NotNull OffsetDateTime bookTo;
     }
 }

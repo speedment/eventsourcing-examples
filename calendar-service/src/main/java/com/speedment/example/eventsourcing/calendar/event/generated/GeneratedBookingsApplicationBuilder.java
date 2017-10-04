@@ -1,12 +1,12 @@
-package com.speedment.example.eventsourcing.booking.event.generated;
+package com.speedment.example.eventsourcing.calendar.event.generated;
 
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.common.injector.Injector;
-import com.speedment.example.eventsourcing.booking.event.BookingsApplication;
-import com.speedment.example.eventsourcing.booking.event.BookingsApplicationBuilder;
-import com.speedment.example.eventsourcing.booking.event.BookingsApplicationImpl;
-import com.speedment.example.eventsourcing.booking.event.booking_event.BookingEventManagerImpl;
-import com.speedment.example.eventsourcing.booking.event.booking_event.BookingEventSqlAdapter;
+import com.speedment.example.eventsourcing.calendar.event.BookingsApplication;
+import com.speedment.example.eventsourcing.calendar.event.BookingsApplicationBuilder;
+import com.speedment.example.eventsourcing.calendar.event.BookingsApplicationImpl;
+import com.speedment.example.eventsourcing.calendar.event.booking_event.BookingEventManagerImpl;
+import com.speedment.example.eventsourcing.calendar.event.booking_event.BookingEventSqlAdapter;
 import com.speedment.runtime.core.internal.AbstractApplicationBuilder;
 
 /**

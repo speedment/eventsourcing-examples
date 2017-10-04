@@ -1,4 +1,4 @@
-package com.speedment.example.eventsourcing.booking.event.generated;
+package com.speedment.example.eventsourcing.calendar.event.generated;
 
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.internal.AbstractSpeedment;

@@ -6,8 +6,8 @@ CREATE TABLE `booking` (
     `version` TINYINT NOT NULL DEFAULT 1,
     `type` ENUM('CREATE_BOOKING', 'UPDATE_BOOKING', 'CANCEL_BOOKING') NOT NULL,
     `booking_id` BINARY(16) NOT NULL,
-    `user_id` BINARY(16) NOT NULL,
-    `resource_id` BINARY(16) NOT NULL,
+    `user_id` BINARY(16),
+    `resource_id` BINARY(16),
     `bookFrom` DATETIME,
     `bookTo` DATETIME
 );

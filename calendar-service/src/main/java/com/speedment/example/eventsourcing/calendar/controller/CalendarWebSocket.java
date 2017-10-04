@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
  * @since  1.0.0
  */
 @Component
-public final class ScheduleEventBus {
+public final class CalendarWebSocket {
 
     private @Autowired BookingView view;
     private @Autowired SimpMessagingTemplate template;

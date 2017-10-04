@@ -19,7 +19,7 @@ import static org.springframework.http.ResponseEntity.notFound;
  * @since  1.0.0
  */
 @RestController
-public final class ScheduleController {
+public final class CalenderController {
 
     private @Autowired BookingView view;
 

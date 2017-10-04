@@ -14,8 +14,8 @@
     
     <name>Calendar Service</name>
     <description>
-        Materializes events from the database, producing a schedule that the
-        client can query.
+        Materializes events from the database, producing a calendar view that
+        the client can query.
     </description>
 
     <dependencies>

@@ -45,7 +45,7 @@ public final class CalenderController {
     @GetMapping("/byUser/{user}")
     List<Booking> bookingsByUser(@PathVariable UUID user) {
         return view.currentBookings()
-            .filter(b -> b.getUserId() == user)
+            .filter(b -> b.getUserId().equals(user))
             .collect(toList());
     }
 }
